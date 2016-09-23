@@ -14,9 +14,18 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView listView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+    @BindView(R.id.listView)
+    RecyclerView listView;
+
     private LinearLayoutManager linearLayoutManager;
     private List<AdFlight> adFlights;
     private AdFlightAdapter adapterItem;
@@ -25,30 +34,38 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
+        setToolbar();
+        setFloatingActionButton();
+        setLayoutManager();
+        setAdFlight();
+        setAdapterItem();
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    private void setAdapterItem() {
+        adapterItem = new AdFlightAdapter(getApplicationContext(), adFlights);
+        listView.setAdapter(adapterItem);
+    }
 
-        listView = (RecyclerView) findViewById(R.id.listView);
-        linearLayoutManager = new LinearLayoutManager(this);
-        listView.setLayoutManager(linearLayoutManager);
-
+    private void setAdFlight() {
         adFlights = new ArrayList<>();
         adFlights.add(new AdFlight("Promo", "16:33:50 19 Agustus 2016", "http://www.panorama-tours.com/themes/basic-v2/assets/uploads/landing_page/xlanding-page40.jpg.pagespeed.ic.xnhhnMStin.webp"));
         adFlights.add(new AdFlight("Promo", "16:33:50 19 Agustus 2016", "http://www.panorama-tours.com/themes/basic-v2/assets/uploads/landing_page/xlanding-page39.jpg.pagespeed.ic.RvtmeuFUcQ.webp"));
         adFlights.add(new AdFlight("Promo", "16:33:50 19 Agustus 2016", "http://www.panorama-tours.com/themes/basic-v2/assets/uploads/landing_page/xlandingpage2.jpg.pagespeed.ic.0ojkLmyWVV.webp"));
         adFlights.add(new AdFlight("Promo", "16:33:50 19 Agustus 2016", "http://www.panorama-tours.com/themes/basic-v2/assets/images/xcicilan-mi.jpg.pagespeed.ic.GbeVbga0hM.webp"));
+    }
 
-        adapterItem = new AdFlightAdapter(getApplicationContext(), adFlights);
-        listView.setAdapter(adapterItem);
+    private void setLayoutManager() {
+        linearLayoutManager = new LinearLayoutManager(this);
+        listView.setLayoutManager(linearLayoutManager);
+    }
+
+    private void setFloatingActionButton() {
+        fab.setOnClickListener(v -> Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show());
+    }
+
+    private void setToolbar() {
+        setSupportActionBar(toolbar);
     }
 
     @Override

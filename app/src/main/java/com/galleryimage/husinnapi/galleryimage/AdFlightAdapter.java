@@ -14,6 +14,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
+import butterknife.BindView;
+
 /**
  * Created by husinnapi on 9/21/16.
  */
@@ -48,41 +50,30 @@ public class AdFlightAdapter extends RecyclerView.Adapter<AdFlightHolder> {
                 .placeholder(R.mipmap.ic_launcher)
                 .into(adFlightHolder.img);
 
-        adFlightHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        adFlightHolder.itemView.setOnClickListener(v -> {
                 switch (position) {
                     case 0:
-                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.panorama-tours.com/event/trinity-travel-fair?desktop=true"));
-                        if (webIntent.resolveActivity(context.getPackageManager()) != null) {
-                            webIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(webIntent);
-                        }
+                        openAdUrl(Uri.parse("http://www.panorama-tours.com/event/trinity-travel-fair?desktop=true"));
                         break;
                     case 1:
-                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.panorama-tours.com/promosi/diskon-khusus-cicilan?desktop=true"));
-                        if (webIntent.resolveActivity(context.getPackageManager()) != null) {
-                            webIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(webIntent);
-                        }
+                        openAdUrl(Uri.parse("http://www.panorama-tours.com/promosi/diskon-khusus-cicilan?desktop=true"));
                         break;
                     case 2:
-                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.panorama-tours.com/promosi/shocking-offer?in_source=shocking-offer&desktop=true"));
-                        if (webIntent.resolveActivity(context.getPackageManager()) != null) {
-                            webIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(webIntent);
-                        }
+                        openAdUrl(Uri.parse("http://www.panorama-tours.com/promosi/shocking-offer?in_source=shocking-offer&desktop=true"));
                         break;
                     case 3:
-                        webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.panorama-tours.com/promo/promo-cicilan-bank?in_source=promo-cicilan-bank&desktop=true"));
-                        if (webIntent.resolveActivity(context.getPackageManager()) != null) {
-                            webIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            context.startActivity(webIntent);
-                        }
+                        openAdUrl(Uri.parse("http://www.panorama-tours.com/promo/promo-cicilan-bank?in_source=promo-cicilan-bank&desktop=true"));
                         break;
                 }
-            }
         });
+    }
+
+    private void openAdUrl(Uri parse) {
+        webIntent = new Intent(Intent.ACTION_VIEW, parse);
+        if (webIntent.resolveActivity(context.getPackageManager()) != null) {
+            webIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(webIntent);
+        }
     }
 
     @Override
