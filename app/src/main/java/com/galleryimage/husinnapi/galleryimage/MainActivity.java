@@ -16,12 +16,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-//    TODO:: Change Image and implement to COC
-
     private RecyclerView listView;
     private LinearLayoutManager linearLayoutManager;
-    private List<ItemObject> itemObjects;
-    private AdapterItem adapterItem;
+    private List<AdFlight> adFlights;
+    private AdFlightAdapter adapterItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +41,13 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         listView.setLayoutManager(linearLayoutManager);
 
-        itemObjects = new ArrayList<>();
-        itemObjects.add(new ItemObject("Promo", "16:33:50 19 Agustus 2016", "http://sta.nusatrip.net/cmsimg/61/61/banner-mandala_promo_id.jpg"));
-        itemObjects.add(new ItemObject("Promo", "16:33:50 19 Agustus 2016", "http://anamblog.com/wp-content/uploads/2012/02/harga-promo-tiket-murah-air-asia-2012.jpg"));
-        itemObjects.add(new ItemObject("Promo", "16:33:50 19 Agustus 2016", "http://indotiketmurah.com/wp-content/uploads/sites/3/2016/07/tiket-promo-pesawat.jpg"));
-        itemObjects.add(new ItemObject("Promo", "16:33:50 19 Agustus 2016", "http://sta.nusatrip.net/cmsimg/61/61/banner-mandala_promo_id.jpg"));
-        itemObjects.add(new ItemObject("Promo", "16:33:50 19 Agustus 2016", "http://anamblog.com/wp-content/uploads/2012/02/harga-promo-tiket-murah-air-asia-2012.jpg"));
-        itemObjects.add(new ItemObject("Promo", "16:33:50 19 Agustus 2016", "http://sta.nusatrip.net/cmsimg/61/61/banner-mandala_promo_id.jpg"));
-        itemObjects.add(new ItemObject("Promo", "16:33:50 19 Agustus 2016", "http://indotiketmurah.com/wp-content/uploads/sites/3/2016/07/tiket-promo-pesawat.jpg"));
+        adFlights = new ArrayList<>();
+        adFlights.add(new AdFlight("Promo", "16:33:50 19 Agustus 2016", "http://www.panorama-tours.com/themes/basic-v2/assets/uploads/landing_page/xlanding-page40.jpg.pagespeed.ic.xnhhnMStin.webp"));
+        adFlights.add(new AdFlight("Promo", "16:33:50 19 Agustus 2016", "http://www.panorama-tours.com/themes/basic-v2/assets/uploads/landing_page/xlanding-page39.jpg.pagespeed.ic.RvtmeuFUcQ.webp"));
+        adFlights.add(new AdFlight("Promo", "16:33:50 19 Agustus 2016", "http://www.panorama-tours.com/themes/basic-v2/assets/uploads/landing_page/xlandingpage2.jpg.pagespeed.ic.0ojkLmyWVV.webp"));
+        adFlights.add(new AdFlight("Promo", "16:33:50 19 Agustus 2016", "http://www.panorama-tours.com/themes/basic-v2/assets/images/xcicilan-mi.jpg.pagespeed.ic.GbeVbga0hM.webp"));
 
-        adapterItem = new AdapterItem(getApplicationContext(),itemObjects);
+        adapterItem = new AdFlightAdapter(getApplicationContext(), adFlights);
         listView.setAdapter(adapterItem);
     }
 

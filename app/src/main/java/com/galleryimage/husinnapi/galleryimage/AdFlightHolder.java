@@ -1,19 +1,21 @@
 package com.galleryimage.husinnapi.galleryimage;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by husinnapi on 9/21/16.
  */
-public class Holder extends RecyclerView.ViewHolder {
+public class AdFlightHolder extends RecyclerView.ViewHolder {
 
     public TextView txtjudul, txtwaktu;
     public ImageView img;
 
-    public Holder(View itemView) {
+    public AdFlightHolder(View itemView) {
         super(itemView);
 
         txtjudul = (TextView) itemView.findViewById(R.id.txtjudul);
